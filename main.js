@@ -1,10 +1,3 @@
-let contentContainer = document.querySelector('#content-container');
-let heading = document.querySelector('#heading');
-let bodyButton = document.querySelector('#body-button');
-let instructions = document.querySelector('#instructions');
-let subNote = document.querySelector('#sub-note');
-let footerButton = document.querySelector('#footer-button');
-
 let icons = {
   pizza: 'url to pizza icon',
   spoon: 'url to spoon icon',
@@ -16,7 +9,6 @@ function loopThroughIcons() {
   for (const property in icons) {
     arrayOfIcons.push(icons[property]);
   }
-  console.log(arrayOfIcons);
   return arrayOfIcons;
 }
 
@@ -46,66 +38,141 @@ let pagesContents = {
     'Note the symbol beside the number',
     icons.pizza,
   ],
+  footerButtonsArray: ['Go', 'Home', 'Home', 'Home', 'Home', 'Home'],
 };
 
+let visibleHeading = document.createElement('h2');
+let visibleBodyButton = document.createElement('button');
+let visibleInstructions = document.createElement('p');
+let visibleSubNote = document.createElement('p');
+let footerButton = document.createElement('button');
+
 let pages = {
-  pageOne(headingContent) {
-    heading.textContent = headingContent;
-    bodyButton.style.display = 'none';
-    bodyButton.style.display = 'none';
-    subNote.style.display = 'none';
-    footerButton.textContent = 'Go';
-    footerButton.addEventListener('click', () => {
-      pages.pageTwo(
-        pagesContents.headingsArray[1],
-        pagesContents.bodyButtonsArray[1],
-        pagesContents.instructionsArray[1]
-      );
-    });
-  },
-  pageTwo(headingContent, bodyButtonContent, instructionsContent) {
-    heading.textContent = headingContent;
-    bodyButton.style.display = 'block';
-    bodyButton.textContent = bodyButtonContent;
-    bodyButton.addEventListener('click', () => {
-      pages.pageThree(
-        pagesContents.headingsArray[2],
-        pagesContents.bodyButtonsArray[2],
-        pagesContents.instructionsArray[2],
-        pagesContents.subNotesArray[2]
-      );
-    });
-    instructions.style.display = 'block';
-    instructions.textContent = instructionsContent;
-    footerButton.textContent = 'Home';
-    footerButton.addEventListener('click', () => {
-      pages.pageOne(pagesContents.headingsArray[1]);
-    });
-  },
-  pageThree(
+  template(
+    headingVisible,
+    bodyButtonVisible,
+    instructionsVisible,
+    subNoteVisible,
     headingContent,
     bodyButtonContent,
     instructionsContent,
-    subNoteContent
+    subNoteContent,
+    footerButtonContent,
+    whereBodyButtonGoes,
+    whereFooterButtonGoes
   ) {
-    heading.textContent = headingContent;
-    bodyButton.style.display = 'block';
-    bodyButton.textContent = bodyButtonContent;
-    instructions.style.display = 'block';
-    instructions.textContent = instructionsContent;
-    subNote.style.display = 'block';
-    subNote.textContent = subNoteContent;
-    footerButton.textContent = 'Home';
+    if (headingVisible) {
+      visibleHeading.textContent = headingContent;
+      document.body.appendChild(visibleHeading);
+    }
+    if (bodyButtonVisible) {
+      visibleBodyButton.textContent = bodyButtonContent;
+      visibleBodyButton.addEventListener('click', () => {
+        whereBodyButtonGoes();
+      });
+      document.body.appendChild(visibleBodyButton);
+    }
+    if (instructionsVisible) {
+      visibleInstructions.textContent = instructionsContent;
+      document.body.appendChild(visibleInstructions);
+    }
+    if (subNoteVisible) {
+      visibleSubNote.textContent = subNoteContent;
+      document.body.appendChild(visibleSubNote);
+    }
+    footerButton.textContent = footerButtonContent;
     footerButton.addEventListener('click', () => {
-      pages.pageOne(pagesContents.headingsArray[1]);
+      whereFooterButtonGoes();
     });
+    document.body.appendChild(footerButton);
   },
-  pageFour() {},
-  pageFive() {},
-  pageSix() {},
+  pageOne() {
+    pages.template(
+      true,
+      false,
+      false,
+      false,
+      pagesContents.headingsArray[0],
+      pagesContents.bodyButtonsArray[0],
+      pagesContents.instructionsArray[0],
+      pagesContents.subNotesArray[0],
+      pagesContents.footerButtonsArray[0],
+      undefined,
+      pages.pageTwo
+    );
+  },
+  pageTwo() {
+    pages.template(
+      true,
+      true,
+      true,
+      false,
+      pagesContents.headingsArray[1],
+      pagesContents.bodyButtonsArray[1],
+      pagesContents.instructionsArray[1],
+      pagesContents.subNotesArray[1],
+      pagesContents.footerButtonsArray[1],
+      pages.pageThree
+    );
+  },
+  pageThree() {
+    pages.template(
+      true,
+      true,
+      true,
+      true,
+      pagesContents.headingsArray[2],
+      pagesContents.bodyButtonsArray[2],
+      pagesContents.instructionsArray[2],
+      pagesContents.subNotesArray[2],
+      pagesContents.footerButtonsArray[2],
+      pages.pageFour
+    );
+  },
+  pageFour() {
+    pages.template(
+      true,
+      true,
+      true,
+      true,
+      pagesContents.headingsArray[3],
+      pagesContents.bodyButtonsArray[3],
+      pagesContents.instructionsArray[3],
+      pagesContents.subNotesArray[3],
+      pagesContents.footerButtonsArray[3],
+      pages.pageFive
+    );
+  },
+  pageFive() {
+    pages.template(
+      true,
+      true,
+      true,
+      true,
+      pagesContents.headingsArray[4],
+      pagesContents.bodyButtonsArray[4],
+      pagesContents.instructionsArray[4],
+      pagesContents.subNotesArray[4],
+      pagesContents.footerButtonsArray[4],
+      pages.pageSix
+    );
+  },
+  pageSix() {
+    pages.template(
+      true,
+      false,
+      true,
+      true,
+      pagesContents.headingsArray[5],
+      pagesContents.bodyButtonsArray[5],
+      pagesContents.instructionsArray[5],
+      pagesContents.subNotesArray[5],
+      pagesContents.footerButtonsArray[5]
+    );
+  },
 };
 
-pages.pageOne(pagesContents.headingsArray[0]);
+pages.pageOne();
 
 /*
 
