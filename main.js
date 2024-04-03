@@ -2,16 +2,110 @@ let contentContainer = document.querySelector('#content-container');
 let heading = document.querySelector('#heading');
 let bodyButton = document.querySelector('#body-button');
 let instructions = document.querySelector('#instructions');
+let subNote = document.querySelector('#sub-note');
 let footerButton = document.querySelector('#footer-button');
 
-let pages = {
-  pageOne() {},
-  pageTwo() {},
-  pageOne() {},
-  pageOne() {},
-  pageOne() {},
-  pageOne() {},
+let icons = {
+  pizza: 'url to pizza icon',
+  spoon: 'url to spoon icon',
+  bowl: 'url to bowl icon',
 };
+
+function loopThroughIcons() {
+  let arrayOfIcons = [];
+  for (const property in icons) {
+    arrayOfIcons.push(icons[property]);
+  }
+  console.log(arrayOfIcons);
+  return arrayOfIcons;
+}
+
+let pagesContents = {
+  headingsArray: [
+    'I can read your mind',
+    'Pick a number from 01 - 99',
+    'Add both digits together to get a new number',
+    'Subtract your new number from the original number',
+    loopThroughIcons(),
+    icons.pizza,
+  ],
+  bodyButtonsArray: ['', 'NEXT', 'NEXT', 'NEXT', 'REVEAL'],
+  instructionsArray: [
+    '',
+    'When you have your number click next',
+    'Ex: 14 is 1 + 4 = 5',
+    'Ex: 14 - 5 = 9',
+    'Find your new number',
+    'Your symbol is:',
+  ],
+  subNotesArray: [
+    '',
+    '',
+    'click next to proceed',
+    'click next to proceed',
+    'Note the symbol beside the number',
+    icons.pizza,
+  ],
+};
+
+let pages = {
+  pageOne(headingContent) {
+    heading.textContent = headingContent;
+    bodyButton.style.display = 'none';
+    bodyButton.style.display = 'none';
+    subNote.style.display = 'none';
+    footerButton.textContent = 'Go';
+    footerButton.addEventListener('click', () => {
+      pages.pageTwo(
+        pagesContents.headingsArray[1],
+        pagesContents.bodyButtonsArray[1],
+        pagesContents.instructionsArray[1]
+      );
+    });
+  },
+  pageTwo(headingContent, bodyButtonContent, instructionsContent) {
+    heading.textContent = headingContent;
+    bodyButton.style.display = 'block';
+    bodyButton.textContent = bodyButtonContent;
+    bodyButton.addEventListener('click', () => {
+      pages.pageThree(
+        pagesContents.headingsArray[2],
+        pagesContents.bodyButtonsArray[2],
+        pagesContents.instructionsArray[2],
+        pagesContents.subNotesArray[2]
+      );
+    });
+    instructions.style.display = 'block';
+    instructions.textContent = instructionsContent;
+    footerButton.textContent = 'Home';
+    footerButton.addEventListener('click', () => {
+      pages.pageOne(pagesContents.headingsArray[1]);
+    });
+  },
+  pageThree(
+    headingContent,
+    bodyButtonContent,
+    instructionsContent,
+    subNoteContent
+  ) {
+    heading.textContent = headingContent;
+    bodyButton.style.display = 'block';
+    bodyButton.textContent = bodyButtonContent;
+    instructions.style.display = 'block';
+    instructions.textContent = instructionsContent;
+    subNote.style.display = 'block';
+    subNote.textContent = subNoteContent;
+    footerButton.textContent = 'Home';
+    footerButton.addEventListener('click', () => {
+      pages.pageOne(pagesContents.headingsArray[1]);
+    });
+  },
+  pageFour() {},
+  pageFive() {},
+  pageSix() {},
+};
+
+pages.pageOne(pagesContents.headingsArray[0]);
 
 /*
 
