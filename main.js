@@ -1,3 +1,9 @@
+let contentContainer = document.querySelector('#content-container');
+let heading = document.querySelector('#heading');
+let bodyButton = document.querySelector('#body-button');
+let instructions = document.querySelector('#instructions');
+let footerButton = document.querySelector('#footer-button');
+
 let pages = {
   pageOne() {},
   pageTwo() {},
@@ -14,9 +20,9 @@ HTML STRUCTURE
   <body>
     <div id="content-container" class="container">
       <h2 id="heading"></h2>
-      <button class="body-button"></button>
-      <p class="instructions"></p>
-      <button class="footer-button"></button>
+      <button id="body-button"></button>
+      <p id="instructions"></p>
+      <button id="footer-button"></button>
     </div>
     <script defer src="./pseudo-code.js"></script>
   </body>
