@@ -13,7 +13,7 @@ let icons = {
 const content = {
   headingsArray: [
     'I can read your mind',
-    'Pick a number from 01 - 99',
+    'Pick a number from',
     'Add both digits together to get a new number',
     'Subtract your new number from the original number',
     loopThroughIcons(),
@@ -76,16 +76,28 @@ function addWhichHeadingClass() {
 
 function renderPage() {
   clearPage();
+  let headingWrapper = document.createElement('div');
+  container.appendChild(headingWrapper);
   createAndAppendElement(
     'h2',
-    container,
+    headingWrapper,
     content.headingsArray[state.currentPage - 1],
     null,
     addWhichHeadingClass()
   );
+  if (state.currentPage === 2) {
+    let extraHeadingText = document.createElement('h2', container);
+    extraHeadingText.textContent = '01 - 99';
+    extraHeadingText.classList.add('extra-heading-text');
+    headingWrapper.appendChild(extraHeadingText);
+  }
+  let buttonTextWrapper = document.createElement('div');
+  buttonTextWrapper.classList.add('button-text-wrapper');
+  container.appendChild(buttonTextWrapper);
+
   createAndAppendElement(
     'button',
-    container,
+    buttonTextWrapper,
     content.bodyButtonsArray[state.currentPage - 1],
     [
       'click',
@@ -97,14 +109,14 @@ function renderPage() {
   );
   createAndAppendElement(
     'p',
-    container,
+    buttonTextWrapper,
     content.instructionsArray[state.currentPage - 1],
     null,
     [['class', 'instructions']]
   );
   createAndAppendElement(
     'p',
-    container,
+    buttonTextWrapper,
     content.subNotesArray[state.currentPage - 1],
     null,
     [['class', 'sub-notes']]
