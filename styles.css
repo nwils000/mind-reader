@@ -11,7 +11,12 @@
   align-items: center;
   flex-direction: column;
   gap: 1.2rem;
-  margin-top: 7rem;
+  margin-bottom: 4.5rem;
+  height: 400px;
+}
+
+.heading-wrapper {
+  height: 890px;
 }
 
 .heading {
@@ -35,6 +40,10 @@
   color: rgba(0, 0, 0, 0.519);
 }
 
+.sub-notes {
+  margin-bottom: 0;
+}
+
 .extra-heading-text {
   font-size: 3.1rem;
   font-weight: 500;
@@ -46,9 +55,15 @@
 .instructions,
 .sub-notes {
   color: #8bd8e2;
-  font-size: 1.2rem;
+  font-size: 1.26rem;
   font-weight: bold;
   text-align: center;
+  padding: 0 4px;
+  line-height: 23px;
+}
+
+.instructions {
+  margin-bottom: 0.2rem;
 }
 
 .body-button {
@@ -57,19 +72,28 @@
   background-color: #8bd8e2;
   font-size: 1.2rem;
   font-weight: bold;
-  padding: 1.1rem 7rem;
-  margin: auto;
+  padding: 1rem 6rem;
+
+  margin-bottom: 0.2rem;
+}
+
+.footer-button-container {
+  width: 100vw;
+  display: flex;
+  justify-content: end;
 }
 
 .footer-button {
-  width: 4.6rem;
-  height: 4.6rem;
+  display: block;
+  position: absolute;
+  width: 80px;
+  height: 80px;
   border-radius: 100%;
   border: solid black 1px;
   background-color: white;
   color: #8bd8e2;
   font-size: 1.3rem;
   font-weight: bold;
-  align-self: flex-end;
-  margin-bottom: 0.8rem;
+  bottom: 10px;
+  right: 10px;
 }

@@ -4,20 +4,14 @@ let container = document.createElement('div');
 container.classList.add('container');
 document.body.appendChild(container);
 
-let icons = {
-  pizza: 'url to pizza icon',
-  spoon: 'url to spoon icon',
-  bowl: 'url to bowl icon',
-};
-
 const content = {
   headingsArray: [
     'I can read your mind',
     'Pick a number from',
     'Add both digits together to get a new number',
     'Subtract your new number from the original number',
-    loopThroughIcons(),
-    icons.pizza,
+    '',
+    '',
   ],
   bodyButtonsArray: ['', 'NEXT', 'NEXT', 'NEXT', 'REVEAL', ''],
   instructionsArray: [
@@ -30,7 +24,7 @@ const content = {
   ],
   subNotesArray: [
     '',
-    '',
+    ' ',
     'click next to proceed',
     'click next to proceed',
     'Note the symbol beside the number',
@@ -38,14 +32,6 @@ const content = {
   ],
   footerButtonsArray: ['Go', 'Home', 'Home', 'Home', 'Home', 'Home'],
 };
-
-function loopThroughIcons() {
-  let arrayOfIcons = [];
-  for (const property in icons) {
-    arrayOfIcons.push(icons[property]);
-  }
-  return arrayOfIcons;
-}
 
 function createAndAppendElement(type, parent, content, event, attributes) {
   if (content != '') {
@@ -77,6 +63,7 @@ function addWhichHeadingClass() {
 function renderPage() {
   clearPage();
   let headingWrapper = document.createElement('div');
+  headingWrapper.classList.add('heading-wrapper');
   container.appendChild(headingWrapper);
   createAndAppendElement(
     'h2',
@@ -121,9 +108,12 @@ function renderPage() {
     null,
     [['class', 'sub-notes']]
   );
+  let footerButton = document.createElement('div');
+  footerButton.classList.add('footer-button-container');
+  container.appendChild(footerButton);
   createAndAppendElement(
     'button',
-    container,
+    footerButton,
     content.footerButtonsArray[state.currentPage - 1],
     [
       'click',
