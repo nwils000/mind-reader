@@ -33,6 +33,13 @@ const content = {
   footerButtonsArray: ['Go', 'Home', 'Home', 'Home', 'Home', 'Home'],
 };
 
+function displayIcons(faClass, parent) {
+  let element = document.createElement('span');
+  element.classList.add('fa-solid');
+  element.classList.add(faClass);
+  parent.appendChild(element);
+}
+
 function createAndAppendElement(type, parent, content, event, attributes) {
   if (content != '') {
     let element = document.createElement(type);
@@ -65,13 +72,28 @@ function renderPage() {
   let headingWrapper = document.createElement('div');
   headingWrapper.classList.add('heading-wrapper');
   container.appendChild(headingWrapper);
-  createAndAppendElement(
-    'h2',
-    headingWrapper,
-    content.headingsArray[state.currentPage - 1],
-    null,
-    addWhichHeadingClass()
-  );
+  if ((state.currentPage = 5)) {
+    for (let i = 0; i < 10; i++) {
+      displayIcons('fa-pizza-slice', headingWrapper);
+      displayIcons('fa-car', headingWrapper);
+      displayIcons('fa-house', headingWrapper);
+      displayIcons('fa-bell', headingWrapper);
+      displayIcons('fa-face-smile', headingWrapper);
+      displayIcons('fa-cloud', headingWrapper);
+      displayIcons('fa-heart', headingWrapper);
+      displayIcons('fa-envelope', headingWrapper);
+      displayIcons('fa-phone', headingWrapper);
+      displayIcons('fa-magnifying-glass', headingWrapper);
+    }
+  } else {
+    createAndAppendElement(
+      'h2',
+      headingWrapper,
+      content.headingsArray[state.currentPage - 1],
+      null,
+      addWhichHeadingClass()
+    );
+  }
   if (state.currentPage === 2) {
     let extraHeadingText = document.createElement('h2', container);
     extraHeadingText.textContent = '01 - 99';
