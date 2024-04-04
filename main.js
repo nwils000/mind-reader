@@ -28,7 +28,7 @@ const content = {
     'click next to proceed',
     'click next to proceed',
     'Note the symbol beside the number',
-    icons.pizza,
+    '',
   ],
   footerButtonsArray: ['Go', 'Home', 'Home', 'Home', 'Home', 'Home'],
 };
