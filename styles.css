@@ -6,6 +6,36 @@
   justify-content: space-between;
 }
 
+.icon-list::-webkit-scrollbar {
+  width: 5px;
+  height: 8px;
+  background-color: #aaaaaa58;
+}
+
+.icon-list::-webkit-scrollbar-thumb {
+  background: #8bd8e2;
+  border-radius: 3px;
+}
+
+.icon-list {
+  overflow-y: scroll;
+  height: 30vh;
+  list-style-type: decimal-leading-zero;
+  position: relative;
+  top: 90px;
+  color: rgb(103, 103, 103);
+  font-weight: bold;
+  font-size: 2rem;
+  display: flex;
+  flex-direction: column;
+  padding-left: 5.1rem;
+  padding-right: 1rem;
+}
+
+.icon-list li {
+  font-size: 3rem;
+}
+
 .button-text-wrapper {
   display: flex;
   align-items: center;
@@ -15,8 +45,15 @@
   height: 400px;
 }
 
+.final-pizza {
+  font-size: 5rem;
+  position: relative;
+  top: 30%;
+  color: rgb(103, 103, 103);
+}
+
 .heading-wrapper {
-  height: 890px;
+  height: 860px;
 }
 
 .heading {
@@ -26,7 +63,7 @@
   padding-left: 0.4rem;
   padding-right: 0.4rem;
   padding-top: 1.5rem;
-  color: rgba(0, 0, 0, 0.519);
+  color: rgb(103, 103, 103);
 }
 
 .heading-2 {
@@ -73,7 +110,6 @@
   font-size: 1.2rem;
   font-weight: bold;
   padding: 1rem 6rem;
-
   margin-bottom: 0.2rem;
 }
 
@@ -96,4 +132,17 @@
   font-weight: bold;
   bottom: 10px;
   right: 10px;
+}
+
+video {
+  display: none;
+}
+
+@media screen and (min-width: 464px) {
+  .container {
+    display: none;
+  }
+  video {
+    display: block;
+  }
 }

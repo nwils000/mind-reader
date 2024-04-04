@@ -28,7 +28,7 @@ const content = {
     'click next to proceed',
     'click next to proceed',
     'Note the symbol beside the number',
-    '',
+    'PIZZA',
   ],
   footerButtonsArray: ['Go', 'Home', 'Home', 'Home', 'Home', 'Home'],
 };
@@ -37,7 +37,9 @@ function displayIcons(faClass, parent) {
   let element = document.createElement('span');
   element.classList.add('fa-solid');
   element.classList.add(faClass);
-  parent.appendChild(element);
+  let listElement = document.createElement('li');
+  parent.appendChild(listElement);
+  listElement.appendChild(element);
 }
 
 function createAndAppendElement(type, parent, content, event, attributes) {
@@ -72,19 +74,29 @@ function renderPage() {
   let headingWrapper = document.createElement('div');
   headingWrapper.classList.add('heading-wrapper');
   container.appendChild(headingWrapper);
-  if ((state.currentPage = 5)) {
-    for (let i = 0; i < 10; i++) {
-      displayIcons('fa-pizza-slice', headingWrapper);
-      displayIcons('fa-car', headingWrapper);
-      displayIcons('fa-house', headingWrapper);
-      displayIcons('fa-bell', headingWrapper);
-      displayIcons('fa-face-smile', headingWrapper);
-      displayIcons('fa-cloud', headingWrapper);
-      displayIcons('fa-heart', headingWrapper);
-      displayIcons('fa-envelope', headingWrapper);
-      displayIcons('fa-phone', headingWrapper);
-      displayIcons('fa-magnifying-glass', headingWrapper);
+  if (state.currentPage === 5) {
+    let list = document.createElement('ul');
+    list.classList.add('icon-list');
+    headingWrapper.appendChild(list);
+
+    for (let i = 0; i < 11; i++) {
+      displayIcons('fa-car', list);
+      displayIcons('fa-house', list);
+      displayIcons('fa-bell', list);
+      displayIcons('fa-face-smile', list);
+      displayIcons('fa-cloud', list);
+      displayIcons('fa-heart', list);
+      displayIcons('fa-envelope', list);
+      displayIcons('fa-phone', list);
+      displayIcons('fa-pizza-slice', list);
     }
+  }
+  if (state.currentPage === 6) {
+    let element = document.createElement('span');
+    element.classList.add('fa-solid');
+    element.classList.add('fa-pizza-slice');
+    element.classList.add('final-pizza');
+    headingWrapper.appendChild(element);
   } else {
     createAndAppendElement(
       'h2',
