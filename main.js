@@ -15,7 +15,7 @@ const content = {
     loopThroughIcons(),
     icons.pizza,
   ],
-  bodyButtonsArray: ['', 'NEXT', 'NEXT', 'NEXT', 'REVEAL'],
+  bodyButtonsArray: ['', 'NEXT', 'NEXT', 'NEXT', 'REVEAL', ''],
   instructionsArray: [
     '',
     'When you have your number click next',
@@ -44,9 +44,14 @@ function loopThroughIcons() {
 }
 
 function createAndAppendElement(type, parent, content, event) {
-  let element = document.createElement(type);
-  element.textContent = content;
-  parent.appendChild(element);
+  if (content != '') {
+    let element = document.createElement(type);
+    element.textContent = content;
+    if (event) {
+      element.addEventListener(event[0], event[1]);
+    }
+    parent.appendChild(element);
+  }
 }
 
 function clearPage() {
@@ -63,7 +68,13 @@ function renderPage() {
   createAndAppendElement(
     'button',
     document.body,
-    content.bodyButtonsArray[state.currentPage - 1]
+    content.bodyButtonsArray[state.currentPage - 1],
+    [
+      'click',
+      function () {
+        increment();
+      },
+    ]
   );
   createAndAppendElement(
     'p',
@@ -78,10 +89,30 @@ function renderPage() {
   createAndAppendElement(
     'button',
     document.body,
-    content.footerButtonsArray[state.currentPage - 1]
+    content.footerButtonsArray[state.currentPage - 1],
+    [
+      'click',
+      function () {
+        content.footerButtonsArray[state.currentPage - 1] === 'Home'
+          ? goHome()
+          : increment();
+      },
+    ]
   );
 }
+
+function increment() {
+  state.currentPage++;
+  renderPage();
+}
+
+function goHome() {
+  state.currentPage = 1;
+  renderPage();
+}
+
 renderPage();
+
 /*
 DATA
 declare a state object and set it to 1
