@@ -1,5 +1,9 @@
 const state = { currentPage: 1 };
 
+let container = document.createElement('div');
+container.classList.add('container');
+document.body.appendChild(container);
+
 let icons = {
   pizza: 'url to pizza icon',
   spoon: 'url to spoon icon',
@@ -55,19 +59,19 @@ function createAndAppendElement(type, parent, content, event) {
 }
 
 function clearPage() {
-  document.body.innerHTML = '';
+  container.innerHTML = '';
 }
 
 function renderPage() {
   clearPage();
   createAndAppendElement(
     'h2',
-    document.body,
+    container,
     content.headingsArray[state.currentPage - 1]
   );
   createAndAppendElement(
     'button',
-    document.body,
+    container,
     content.bodyButtonsArray[state.currentPage - 1],
     [
       'click',
@@ -78,17 +82,17 @@ function renderPage() {
   );
   createAndAppendElement(
     'p',
-    document.body,
+    container,
     content.instructionsArray[state.currentPage - 1]
   );
   createAndAppendElement(
     'p',
-    document.body,
+    container,
     content.subNotesArray[state.currentPage - 1]
   );
   createAndAppendElement(
     'button',
-    document.body,
+    container,
     content.footerButtonsArray[state.currentPage - 1],
     [
       'click',
