@@ -47,11 +47,14 @@ function loopThroughIcons() {
   return arrayOfIcons;
 }
 
-function createAndAppendElement(type, parent, content, event) {
+function createAndAppendElement(type, parent, content, event, attributes) {
   if (content != '') {
     let element = document.createElement(type);
     element.textContent = content;
-    if (event) {
+    if (attributes && attributes.length > 0) {
+      element.setAttribute(attributes[0][0], attributes[0][1]);
+    }
+    if (event != null) {
       element.addEventListener(event[0], event[1]);
     }
     parent.appendChild(element);
@@ -62,12 +65,23 @@ function clearPage() {
   container.innerHTML = '';
 }
 
+function addWhichHeadingClass() {
+  switch (state.currentPage) {
+    case 2:
+      return [['class', 'heading-2']];
+    default:
+      return [['class', 'heading']];
+  }
+}
+
 function renderPage() {
   clearPage();
   createAndAppendElement(
     'h2',
     container,
-    content.headingsArray[state.currentPage - 1]
+    content.headingsArray[state.currentPage - 1],
+    null,
+    addWhichHeadingClass()
   );
   createAndAppendElement(
     'button',
@@ -78,17 +92,22 @@ function renderPage() {
       function () {
         increment();
       },
-    ]
+    ],
+    [['class', 'body-button']]
   );
   createAndAppendElement(
     'p',
     container,
-    content.instructionsArray[state.currentPage - 1]
+    content.instructionsArray[state.currentPage - 1],
+    null,
+    [['class', 'instructions']]
   );
   createAndAppendElement(
     'p',
     container,
-    content.subNotesArray[state.currentPage - 1]
+    content.subNotesArray[state.currentPage - 1],
+    null,
+    [['class', 'sub-notes']]
   );
   createAndAppendElement(
     'button',
@@ -101,7 +120,8 @@ function renderPage() {
           ? goHome()
           : increment();
       },
-    ]
+    ],
+    [['class', 'footer-button']]
   );
 }
 
