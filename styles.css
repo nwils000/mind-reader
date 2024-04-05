@@ -170,4 +170,13 @@ video {
   .arrow-footer-button {
     position: static;
   }
+  .heading-2 {
+    font-size: 5rem;
+  }
+  .heading {
+    font-size: 5rem;
+  }
+  .extra-heading-text {
+    font-size: 5rem;
+  }
 }
