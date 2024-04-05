@@ -145,20 +145,33 @@ function renderPage() {
   let footerButton = document.createElement('div');
   footerButton.classList.add('footer-button-container');
   container.appendChild(footerButton);
-  createAndAppendElement(
-    'button',
-    footerButton,
-    content.footerButtonsArray[state.currentPage - 1],
-    [
-      'click',
-      function () {
-        content.footerButtonsArray[state.currentPage - 1] === 'Home'
-          ? goHome()
-          : increment();
-      },
-    ],
-    [['class', 'footer-button']]
-  );
+  if (state.currentPage === 1) {
+    createAndAppendElement(
+      'button',
+      footerButton,
+      content.footerButtonsArray[state.currentPage - 1],
+      [
+        'click',
+        function () {
+          content.footerButtonsArray[state.currentPage - 1] === 'Home'
+            ? goHome()
+            : increment();
+        },
+      ],
+      [['class', 'footer-button']]
+    );
+  } else {
+    let backIcon = document.createElement('span');
+    backIcon.classList.add('fa-solid');
+    backIcon.classList.add('fa-arrow-rotate-left');
+    backIcon.classList.add('arrow-footer-button');
+    backIcon.addEventListener('click', () => {
+      content.footerButtonsArray[state.currentPage - 1] === 'Home'
+        ? goHome()
+        : increment();
+    });
+    footerButton.appendChild(backIcon);
+  }
 }
 
 function increment() {
