@@ -109,8 +109,14 @@
   background-color: #8bd8e2;
   font-size: 1.2rem;
   font-weight: bold;
-  padding: 1rem 6rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  width: 15rem;
   margin-bottom: 0.2rem;
+}
+
+.button-text-wrapper {
+  height: auto;
 }
 
 .footer-button-container {
@@ -138,11 +144,17 @@ video {
   display: none;
 }
 
-@media screen and (min-width: 464px) {
+@media screen and (min-width: 500px) {
   .container {
-    display: none;
+    max-height: 97vh;
+    justify-content: start;
   }
-  video {
-    display: block;
+  .heading-wrapper {
+  }
+  .footer-button-container {
+    justify-content: center;
+  }
+  .footer-button {
+    position: static;
   }
 }
