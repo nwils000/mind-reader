@@ -38,8 +38,8 @@ function displayIcons(faClass, parent) {
   element.classList.add('fa-solid');
   element.classList.add(faClass);
   let listElement = document.createElement('li');
-  parent.appendChild(listElement);
   listElement.appendChild(element);
+  parent.appendChild(listElement);
 }
 
 function createAndAppendElement(type, parent, content, event, attributes) {

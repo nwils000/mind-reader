@@ -20,7 +20,7 @@
 
 .icon-list {
   overflow-y: scroll;
-  height: 30vh;
+  height: 38vh;
   list-style-type: decimal-leading-zero;
   position: relative;
   top: 90px;
@@ -29,7 +29,7 @@
   font-size: 2rem;
   display: flex;
   flex-direction: column;
-  padding-left: 5.1rem;
+  padding-left: 7rem;
   padding-right: 1rem;
 }
 
